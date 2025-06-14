@@ -763,7 +763,6 @@ modded class MissionServer
 	// }
 	
 	void DM_PlayerCustomRespawnHandler(PlayerBase player, PlayerIdentity identity)
-	void DM_PlayerCustomRespawnHandler(PlayerBase player, PlayerIdentity identity)
 	{
 		string sid = identity.GetId();
 		ref DmPlayerData dmData = null;
@@ -795,7 +794,6 @@ modded class MissionServer
 		player.m_dmConnectSyncCtx = m_DM_ConnectSyncCtx;
 		player.SynchDmPlayerDataDirty();
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(EquipPlayer_DM, 1000, false, player);
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(EquipPlayer_DM, 1000, false, player);
 	}
 	
 	// override PlayerBase CreateCharacter(PlayerIdentity identity, vector pos, ParamsReadContext ctx, string characterName)
@@ -812,7 +810,6 @@ modded class MissionServer
 	override void InvokeOnConnect(PlayerBase player, PlayerIdentity identity)
 	{
 		super.InvokeOnConnect(player, identity);
-		DM_PlayerCustomRespawnHandler(player, identity);
 		DM_PlayerCustomRespawnHandler(player, identity);
 	}
 	
