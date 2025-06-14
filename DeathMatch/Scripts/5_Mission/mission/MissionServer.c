@@ -213,8 +213,8 @@ modded class MissionServer
 	
 	override void OnUpdate(float timeslice)
 	{
-		// array<Man> playersList();
-		// GetGame().GetPlayers(playersList);
+		array<Man> playersList();
+		GetGame().GetPlayers(playersList);
 		//m_DM_currentRadius = Math.Clamp(playersList.Count() * m_DM_ServerSettings.m_expandStep, m_DmCurrentTrail.m_minRadius, m_DmCurrentTrail.m_maxRadius);
 		
 		//m_DmTrailTimer = m_DmTrailTimer + (timeslice * m_DM_ServerSettings.m_areaMoveSpeed);
@@ -237,6 +237,16 @@ modded class MissionServer
 			{
 				m_DmTimeUpdateTimer = 0;
 				GetGame().GetWorld().SetDate(m_DmYear, m_DmMonth, m_DmDay, m_DmHour, m_DmMinute);
+			}
+		}
+
+		foreach (Man manObj : playersList)
+		{
+			PlayerBase player = PlayerBase.Cast(manObj);
+			if (player)
+			{
+				// not efficient, but worth a try to see if it fixes
+				EquipPlayer_DM(player);
 			}
 		}
 		
