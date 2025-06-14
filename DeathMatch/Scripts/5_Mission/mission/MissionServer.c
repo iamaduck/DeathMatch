@@ -25,10 +25,7 @@ modded class MissionServer
 		
 		// m_DmLeaderBoardCtx = new DmLeaderBoardData;
 		// m_DmLeaderBoardCtx.Init();
-		// m_DmLeaderBoardCtx = new DmLeaderBoardData;
-		// m_DmLeaderBoardCtx.Init();
-		
-		// m_DmLeaderboard = new array<ref DmPlayerData>;
+
 		// m_DmLeaderboard = new array<ref DmPlayerData>;
 		m_DmDatabase = new map<string, ref DmPlayerData>;
 		m_DM_ServerSettings = new DM_ServerSettings;
@@ -44,10 +41,6 @@ modded class MissionServer
 			JsonFileLoader<ref DM_ServerSettings>.JsonLoadFile(path, m_DM_ServerSettings);
 		}
 		
-		// if (!m_DM_ServerSettings.m_trails || m_DM_ServerSettings.m_trails.Count() == 0)
-		// {
-		// 	m_DM_ServerSettings.InitDefaultTrails();
-		// }
 		// if (!m_DM_ServerSettings.m_trails || m_DM_ServerSettings.m_trails.Count() == 0)
 		// {
 		// 	m_DM_ServerSettings.InitDefaultTrails();
@@ -121,7 +114,6 @@ modded class MissionServer
 			}
 		}
 		
-		// BuildLeaderboard_DM();
 		// BuildLeaderboard_DM();
 		GetGame().GetWorld().GetDate(m_DmYear, m_DmMonth, m_DmDay, m_DmHour, m_DmMinute);
 		GetRPCManager().AddRPC("DM", "DM_WeaponBuy", this, SingleplayerExecutionType.Server);
@@ -385,25 +377,6 @@ modded class MissionServer
 		// 	// 	}
 		// 	// }
 		// }
-		// ben note: this should be temp, i think this will cause issues
-		// ref DmPlayerData dmData = new DmPlayerData();
-
-		// vector dmCurPos = DM_GetAreaPos();
-		// foreach (Man manObj : playersList)
-		// {
-		// 	PlayerBase player = PlayerBase.Cast(manObj);
-		// 	// if (player)
-		// 	// {
-		// 	// 	if (!player.m_DmIsVarsSynch || player.m_DmZoneRadius != m_DM_currentRadius || player.m_DmCenterX != dmCurPos[0] || player.m_DmCenterZ != dmCurPos[2])
-		// 	// 	{
-		// 	// 		player.m_DmCenterX = dmCurPos[0];
-		// 	// 		player.m_DmCenterZ = dmCurPos[2];
-		// 	// 		player.m_DmZoneRadius = m_DM_currentRadius;
-		// 	// 		player.m_DmIsVarsSynch = true;
-		// 	// 		player.SynchDmDirty();
-		// 	// 	}
-		// 	// }
-		// }
 		
 		super.OnUpdate(timeslice);
 	};
@@ -416,20 +389,7 @@ modded class MissionServer
 	// 		m_DmTrailShift = 0;
 	// 		start = 0;
 	// 	}
-	// float DM_GetPointsDist()
-	// {
-	// 	int start = (int)m_DmTrailShift;
-	// 	if (start >= m_DmCurrentTrail.m_points.Count())
-	// 	{
-	// 		m_DmTrailShift = 0;
-	// 		start = 0;
-	// 	}
 		
-	// 	int end = start + 1;
-	// 	if (end >= m_DmCurrentTrail.m_points.Count())
-	// 	{
-	// 		end = 0;
-	// 	}
 	// 	int end = start + 1;
 	// 	if (end >= m_DmCurrentTrail.m_points.Count())
 	// 	{
@@ -438,13 +398,7 @@ modded class MissionServer
 		
 	// 	vector startPos = m_DmCurrentTrail.m_points.Get(start);
 	// 	vector endPos = m_DmCurrentTrail.m_points.Get(end);
-	// 	vector startPos = m_DmCurrentTrail.m_points.Get(start);
-	// 	vector endPos = m_DmCurrentTrail.m_points.Get(end);
-		
-	// 	startPos[1] = 0;
-	// 	endPos[1] = 0;
-	// 	return vector.Distance(startPos, endPos);
-	// }
+
 	// 	startPos[1] = 0;
 	// 	endPos[1] = 0;
 	// 	return vector.Distance(startPos, endPos);
@@ -458,33 +412,13 @@ modded class MissionServer
 	// 		m_DmTrailShift = 0;
 	// 		start = 0;
 	// 	}
-	// vector DM_GetAreaPos()
-	// {
-	// 	int start = (int)m_DmTrailShift;
-	// 	if (start >= m_DmCurrentTrail.m_points.Count())
-	// 	{
-	// 		m_DmTrailShift = 0;
-	// 		start = 0;
-	// 	}
 		
 	// 	int end = start + 1;
 	// 	if (end >= m_DmCurrentTrail.m_points.Count())
 	// 	{
 	// 		end = 0;
 	// 	}
-	// 	int end = start + 1;
-	// 	if (end >= m_DmCurrentTrail.m_points.Count())
-	// 	{
-	// 		end = 0;
-	// 	}
 		
-	// 	vector startPos = m_DmCurrentTrail.m_points.Get(start);
-	// 	vector endPos = m_DmCurrentTrail.m_points.Get(end);
-	// 	float delta = Math.Clamp(m_DmTrailShift - start, 0, 1);
-	// 	vector result = vector.Lerp(startPos, endPos, delta);
-	// 	result[1] = GetGame().SurfaceY(result[0], result[2]);
-	// 	return result;
-	// }
 	// 	vector startPos = m_DmCurrentTrail.m_points.Get(start);
 	// 	vector endPos = m_DmCurrentTrail.m_points.Get(end);
 	// 	float delta = Math.Clamp(m_DmTrailShift - start, 0, 1);
@@ -499,18 +433,7 @@ modded class MissionServer
 	// 	{
 	// 		return;
 	// 	}
-	// void DM_LeaderBoardSrv(CallType type, ParamsReadContext ctx, PlayerIdentity sender, Object target)
-	// {
-	// 	if (type != CallType.Server)
-	// 	{
-	// 		return;
-	// 	}
-		
-	// 	PlayerBase player = PlayerBase.Cast(target);
-	// 	if (!player || !player.IsAlive() || !player.m_dmPlayerData)
-	// 	{
-	// 		return;
-	// 	}
+
 	// 	PlayerBase player = PlayerBase.Cast(target);
 	// 	if (!player || !player.IsAlive() || !player.m_dmPlayerData)
 	// 	{
@@ -538,22 +461,7 @@ modded class MissionServer
 	// 		m_DmLeaderBoardCtx.m_Kills.Insert(dmData.m_Kills);
 	// 		m_DmLeaderBoardCtx.m_Death.Insert(dmData.m_Death);
 	// 		m_DmLeaderBoardCtx.m_Index.Insert(dmData.m_LeaderBoardIndex);
-	// 	bool alreadyInTop = false;
-	// 	m_DmLeaderBoardCtx.Clear();
-	// 	for (int i = 0; i < count; i++)
-	// 	{
-	// 		ref DmPlayerData dmData = m_DmLeaderboard.Get(i);
-	// 		m_DmLeaderBoardCtx.m_Names.Insert(dmData.m_Name);
-	// 		m_DmLeaderBoardCtx.m_Levels.Insert(dmData.m_Level);
-	// 		m_DmLeaderBoardCtx.m_Kills.Insert(dmData.m_Kills);
-	// 		m_DmLeaderBoardCtx.m_Death.Insert(dmData.m_Death);
-	// 		m_DmLeaderBoardCtx.m_Index.Insert(dmData.m_LeaderBoardIndex);
-			
-	// 		if (dmData == player.m_dmPlayerData)
-	// 		{
-	// 			alreadyInTop = true;
-	// 		}
-	// 	}
+
 	// 		if (dmData == player.m_dmPlayerData)
 	// 		{
 	// 			alreadyInTop = true;
@@ -568,23 +476,12 @@ modded class MissionServer
 	// 		m_DmLeaderBoardCtx.m_Death.Insert(player.m_dmPlayerData.m_Death);
 	// 		m_DmLeaderBoardCtx.m_Index.Insert(player.m_dmPlayerData.m_LeaderBoardIndex);
 	// 	}
-	// 	if (!alreadyInTop)
-	// 	{
-	// 		m_DmLeaderBoardCtx.m_Names.Insert(player.m_dmPlayerData.m_Name);
-	// 		m_DmLeaderBoardCtx.m_Levels.Insert(player.m_dmPlayerData.m_Level);
-	// 		m_DmLeaderBoardCtx.m_Kills.Insert(player.m_dmPlayerData.m_Kills);
-	// 		m_DmLeaderBoardCtx.m_Death.Insert(player.m_dmPlayerData.m_Death);
-	// 		m_DmLeaderBoardCtx.m_Index.Insert(player.m_dmPlayerData.m_LeaderBoardIndex);
-	// 	}
 		
-	// 	GetRPCManager().SendRPC("DM", "DM_LeaderBoard", new Param1<ref DmLeaderBoardData>(m_DmLeaderBoardCtx), true, sender); 
-	// }
 	// 	GetRPCManager().SendRPC("DM", "DM_LeaderBoard", new Param1<ref DmLeaderBoardData>(m_DmLeaderBoardCtx), true, sender); 
 	// }
 	
 	void DM_WeaponBuy(CallType type, ParamsReadContext ctx, PlayerIdentity sender, Object target)
 	{
-
 
 		if (type != CallType.Server)
 		{
@@ -791,11 +688,6 @@ modded class MissionServer
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(EquipPlayer_DM, 1000, false, player);
 	}
 	
-	// override PlayerBase CreateCharacter(PlayerIdentity identity, vector pos, ParamsReadContext ctx, string characterName)
-	// {
-	// 	pos = CalculateSafePos_DM(DM_GetAreaPos(), Math.Clamp(m_DM_currentRadius - 20, 10, 10000));
-	// 	return super.CreateCharacter(identity, pos, ctx, characterName);
-	// }
 	// override PlayerBase CreateCharacter(PlayerIdentity identity, vector pos, ParamsReadContext ctx, string characterName)
 	// {
 	// 	pos = CalculateSafePos_DM(DM_GetAreaPos(), Math.Clamp(m_DM_currentRadius - 20, 10, 10000));
