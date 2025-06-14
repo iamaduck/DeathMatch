@@ -630,14 +630,14 @@ modded class MissionServer
 		// }
 
 		// dont add duplicate weapons to player data
-		if (!player.m_dmPlayerData.ContainsWeapon(player.m_dmConnectSyncCtx, wpnData.m_Id)) {
+		//if (!player.m_dmPlayerData.ContainsWeapon(player.m_dmConnectSyncCtx, wpnData.m_Id)) {
 		// 	player.m_dmPlayerData.AddWeapon(wpnData.m_Id);
 		// 	player.m_dmPlayerData.m_Money = player.m_dmPlayerData.m_Money - wpnData.m_Price;
 		// 	if (player.m_dmPlayerData.m_Money < 0)
 		// 	{
 		// 		player.m_dmPlayerData.m_Money = 0;
 		// 	}
-		// }
+		//}
 
 		// dont add duplicate weapons to player data
 		if (!player.m_dmPlayerData.ContainsWeapon(player.m_dmConnectSyncCtx, wpnData.m_Id)) {
@@ -648,10 +648,6 @@ modded class MissionServer
 		
 		player.m_dmPlayerData.m_CurrentWeapon = wpnData.m_Id;
 		player.SynchDmPlayerDataDirty();
-
-		// dont do async call to try and fix desync issue
-		//GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(EquipPlayer_DM, 1000, false, player);
-
 
 		// dont do async call to try and fix desync issue
 		//GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(EquipPlayer_DM, 1000, false, player);
@@ -724,7 +720,6 @@ modded class MissionServer
 		
 		player.m_dmPlayerData.m_CurrentEquipment = eqpData.m_Id;
 		player.SynchDmPlayerDataDirty();
-		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(EquipPlayer_DM, 1000, false, player);
 		GetGame().GetCallQueue(CALL_CATEGORY_SYSTEM).CallLater(EquipPlayer_DM, 1000, false, player);
 	}
 	
