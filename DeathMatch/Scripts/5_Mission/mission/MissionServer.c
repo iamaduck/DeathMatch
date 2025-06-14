@@ -9,14 +9,8 @@ modded class MissionServer
 	// float m_DmTrailShift = 0;
 	// float m_DmTrailTimer = 0;
 	// float m_DM_currentRadius;
-	// ref array<ref DmPlayerData> m_DmLeaderboard;
-	// ref DM_AreaTrail m_DmCurrentTrail;
-	// ref DmLeaderBoardData m_DmLeaderBoardCtx;
-	// float m_DmTrailShift = 0;
-	// float m_DmTrailTimer = 0;
-	// float m_DM_currentRadius;
 	float m_DmTimeUpdateTimer = 0;
-	// // float m_DmDatabaseSaveTimer = 0;
+	// float m_DmDatabaseSaveTimer = 0;
 	int m_DmYear, m_DmMonth, m_DmDay, m_DmHour, m_DmMinute;
 	
     override void OnInit()
@@ -25,7 +19,7 @@ modded class MissionServer
 		
 		// m_DmLeaderBoardCtx = new DmLeaderBoardData;
 		// m_DmLeaderBoardCtx.Init();
-
+		
 		// m_DmLeaderboard = new array<ref DmPlayerData>;
 		m_DmDatabase = new map<string, ref DmPlayerData>;
 		m_DM_ServerSettings = new DM_ServerSettings;
@@ -55,7 +49,7 @@ modded class MissionServer
 		{
 			m_DM_ConnectSyncCtx.m_allowManualRespawn = true;
 		}
-		
+
 		// Weapons
 		path = "$profile:DM\\Weapons.json";
 		if (FileExist(path))
@@ -131,21 +125,7 @@ modded class MissionServer
 	// 		{
 	// 			continue;
 	// 		}
-	// void BuildLeaderboard_DM()
-	// {
-	// 	array<float> kdSortedArray();
-	// 	multiMap<float, string> kdMultiMap(); 
-	// 	foreach (string sid, ref DmPlayerData dmData : m_DmDatabase)
-	// 	{
-	// 		if (dmData.m_Death == 0 || dmData.m_Kills == 0 || dmData.m_Name.Length() == 0)
-	// 		{
-	// 			continue;
-	// 		}
 			
-	// 		float dkValue = (float)dmData.m_Kills / (float)dmData.m_Death;
-	// 		kdMultiMap.Insert(dkValue, sid);
-	// 		kdSortedArray.Insert(dkValue);
-	// 	}
 	// 		float dkValue = (float)dmData.m_Kills / (float)dmData.m_Death;
 	// 		kdMultiMap.Insert(dkValue, sid);
 	// 		kdSortedArray.Insert(dkValue);
@@ -162,25 +142,7 @@ modded class MissionServer
 	// 		{
 	// 			continue;
 	// 		}
-	// 	float lastValue = -1;
-	// 	int leaderBoardIndex = 1;
-	// 	kdSortedArray.Sort(true);
-	// 	m_DmLeaderboard.Clear();
-	// 	for (int i = 0; i < kdSortedArray.Count(); i++)
-	// 	{
-	// 		float dkVal2 = kdSortedArray.Get(i);
-	// 		if (lastValue == dkVal2)
-	// 		{
-	// 			continue;
-	// 		}
 			
-	// 		lastValue = dkVal2;
-	// 		TStringArray sidsArray = kdMultiMap.Get(dkVal2);
-	// 		foreach (string sid2 : sidsArray)
-	// 		{
-	// 			ref DmPlayerData sortedDmData = m_DmDatabase.Get(sid2);
-	// 			sortedDmData.m_LeaderBoardIndex = leaderBoardIndex;
-	// 			m_DmLeaderboard.Insert(sortedDmData);
 	// 		lastValue = dkVal2;
 	// 		TStringArray sidsArray = kdMultiMap.Get(dkVal2);
 	// 		foreach (string sid2 : sidsArray)
@@ -193,22 +155,7 @@ modded class MissionServer
 	// 		}
 	// 	}
 	// }
-	// 			leaderBoardIndex = leaderBoardIndex + 1;
-	// 		}
-	// 	}
-	// }
 	
-	// void CleanupDatabase_DM(int deltaTime)
-	// {
-	// 	TStringArray playersToDelete();
-	// 	foreach (string sid, ref DmPlayerData dmData : m_DmDatabase)
-	// 	{
-	// 		dmData.m_TimeStamp = dmData.m_TimeStamp + deltaTime;
-	// 		if (dmData.m_TimeStamp > m_DM_ServerSettings.m_databaseWipePlayerTimeout)
-	// 		{
-	// 			playersToDelete.Insert(sid);
-	// 		}
-	// 	}
 	// void CleanupDatabase_DM(int deltaTime)
 	// {
 	// 	TStringArray playersToDelete();
@@ -226,11 +173,6 @@ modded class MissionServer
 	// 		m_DmDatabase.Remove(delSid);
 	// 	}
 	// }
-	// 	foreach (string delSid : playersToDelete)
-	// 	{
-	// 		m_DmDatabase.Remove(delSid);
-	// 	}
-	// }
 	
 	// void SaveDatabase_DM()
 	// {
@@ -240,29 +182,7 @@ modded class MissionServer
 	// 		CopyFile(path, path + ".backup");
 	// 		DeleteFile(path);
 	// 	}
-	// void SaveDatabase_DM()
-	// {
-	// 	string path = "$profile:DM\\Players.dat";
-	// 	if (FileExist(path))
-	// 	{
-	// 		CopyFile(path, path + ".backup");
-	// 		DeleteFile(path);
-	// 	}
 		
-	// 	DM_Log("Start database saving...");
-	// 	FileSerializer ctx = new FileSerializer();
-	// 	ctx.Open(path + ".temp", FileMode.WRITE);
-	// 	if (ctx.IsOpen())
-	// 	{
-	// 		int ver = 2;
-	// 		int count = m_DmDatabase.Count();
-	// 		ctx.Write(ver);
-	// 		ctx.Write(count);			
-	// 		foreach (string sid, ref DmPlayerData dmData : m_DmDatabase)
-	// 		{
-	// 			ctx.Write(sid);
-	// 			dmData.Serialize(ctx);
-	// 		}
 	// 	DM_Log("Start database saving...");
 	// 	FileSerializer ctx = new FileSerializer();
 	// 	ctx.Open(path + ".temp", FileMode.WRITE);
@@ -278,12 +198,6 @@ modded class MissionServer
 	// 			dmData.Serialize(ctx);
 	// 		}
 			
-	// 		ctx.Close();
-	// 		CopyFile(path + ".temp", path);
-	// 		DeleteFile(path + ".temp");
-	// 		DM_Log("Finish database saving...OK " + count.ToString());
-	// 	}
-	// }
 	// 		ctx.Close();
 	// 		CopyFile(path + ".temp", path);
 	// 		DeleteFile(path + ".temp");
@@ -294,15 +208,11 @@ modded class MissionServer
 	override void OnMissionFinish()
 	{
 		//SaveDatabase_DM();
-		//SaveDatabase_DM();
 		super.OnMissionFinish();
 	}
 	
 	override void OnUpdate(float timeslice)
 	{
-		// array<Man> playersList();
-		// GetGame().GetPlayers(playersList);
-		//m_DM_currentRadius = Math.Clamp(playersList.Count() * m_DM_ServerSettings.m_expandStep, m_DmCurrentTrail.m_minRadius, m_DmCurrentTrail.m_maxRadius);
 		// array<Man> playersList();
 		// GetGame().GetPlayers(playersList);
 		//m_DM_currentRadius = Math.Clamp(playersList.Count() * m_DM_ServerSettings.m_expandStep, m_DmCurrentTrail.m_minRadius, m_DmCurrentTrail.m_maxRadius);
@@ -315,18 +225,7 @@ modded class MissionServer
 		// 	{
 		// 		dist = 0.1;
 		// 	}
-		//m_DmTrailTimer = m_DmTrailTimer + (timeslice * m_DM_ServerSettings.m_areaMoveSpeed);
-		// if (m_DmTrailTimer > 10)
-		// {
-		// 	float dist = DM_GetPointsDist();
-		// 	if (dist == 0)
-		// 	{
-		// 		dist = 0.1;
-		// 	}
 			
-		// 	m_DmTrailShift = m_DmTrailShift + (10 / dist);
-		// 	m_DmTrailTimer = 0;
-		// }
 		// 	m_DmTrailShift = m_DmTrailShift + (10 / dist);
 		// 	m_DmTrailTimer = 0;
 		// }
@@ -341,14 +240,6 @@ modded class MissionServer
 			}
 		}
 		
-		// m_DmDatabaseSaveTimer = m_DmDatabaseSaveTimer + timeslice;
-		// if (m_DmDatabaseSaveTimer > m_DM_ServerSettings.m_databaseSaveTime)
-		// {
-		// 	m_DmDatabaseSaveTimer = 0;
-		// 	CleanupDatabase_DM(m_DM_ServerSettings.m_databaseSaveTime);
-		// 	BuildLeaderboard_DM();
-		// 	SaveDatabase_DM();
-		// }
 		// m_DmDatabaseSaveTimer = m_DmDatabaseSaveTimer + timeslice;
 		// if (m_DmDatabaseSaveTimer > m_DM_ServerSettings.m_databaseSaveTime)
 		// {
@@ -398,7 +289,7 @@ modded class MissionServer
 		
 	// 	vector startPos = m_DmCurrentTrail.m_points.Get(start);
 	// 	vector endPos = m_DmCurrentTrail.m_points.Get(end);
-
+		
 	// 	startPos[1] = 0;
 	// 	endPos[1] = 0;
 	// 	return vector.Distance(startPos, endPos);
@@ -433,18 +324,13 @@ modded class MissionServer
 	// 	{
 	// 		return;
 	// 	}
-
+		
 	// 	PlayerBase player = PlayerBase.Cast(target);
 	// 	if (!player || !player.IsAlive() || !player.m_dmPlayerData)
 	// 	{
 	// 		return;
 	// 	}
 		
-	// 	int count = m_DmLeaderboard.Count();
-	// 	if (count > m_DM_ServerSettings.m_leaderBoardTopSize)
-	// 	{
-	// 		count = m_DM_ServerSettings.m_leaderBoardTopSize;
-	// 	}
 	// 	int count = m_DmLeaderboard.Count();
 	// 	if (count > m_DM_ServerSettings.m_leaderBoardTopSize)
 	// 	{
@@ -461,7 +347,7 @@ modded class MissionServer
 	// 		m_DmLeaderBoardCtx.m_Kills.Insert(dmData.m_Kills);
 	// 		m_DmLeaderBoardCtx.m_Death.Insert(dmData.m_Death);
 	// 		m_DmLeaderBoardCtx.m_Index.Insert(dmData.m_LeaderBoardIndex);
-
+			
 	// 		if (dmData == player.m_dmPlayerData)
 	// 		{
 	// 			alreadyInTop = true;
@@ -510,13 +396,6 @@ modded class MissionServer
 		// 	{
 		// 		return;
 		// 	}
-		// bypass checks and just give weapon to player
-		// if (!player.m_dmPlayerData.ContainsWeapon(player.m_dmConnectSyncCtx, wpnData.m_Id))
-		// {
-		// 	if (player.m_dmPlayerData.IsWeaponLocked(wpnData))
-		// 	{
-		// 		return;
-		// 	}
 			
 		// 	player.m_dmPlayerData.AddWeapon(wpnData.m_Id);
 		// 	player.m_dmPlayerData.m_Money = player.m_dmPlayerData.m_Money - wpnData.m_Price;
@@ -525,16 +404,6 @@ modded class MissionServer
 		// 		player.m_dmPlayerData.m_Money = 0;
 		// 	}
 		// }
-
-		// dont add duplicate weapons to player data
-		//if (!player.m_dmPlayerData.ContainsWeapon(player.m_dmConnectSyncCtx, wpnData.m_Id)) {
-		// 	player.m_dmPlayerData.AddWeapon(wpnData.m_Id);
-		// 	player.m_dmPlayerData.m_Money = player.m_dmPlayerData.m_Money - wpnData.m_Price;
-		// 	if (player.m_dmPlayerData.m_Money < 0)
-		// 	{
-		// 		player.m_dmPlayerData.m_Money = 0;
-		// 	}
-		//}
 
 		// dont add duplicate weapons to player data
 		if (!player.m_dmPlayerData.ContainsWeapon(player.m_dmConnectSyncCtx, wpnData.m_Id)) {
@@ -591,23 +460,6 @@ modded class MissionServer
 		// }
 
 		// dont add duplicate equip to player data
-		// dont check for locked or deduct money
-		// if (!player.m_dmPlayerData.ContainsEquipment(player.m_dmConnectSyncCtx, eqpData.m_Id))
-		// {
-		// 	if (player.m_dmPlayerData.IsEquipmentLocked(eqpData))
-		// 	{
-		// 		return;
-		// 	}
-			
-		// 	player.m_dmPlayerData.AddEquipment(eqpData.m_Id);
-		// 	player.m_dmPlayerData.m_Money = player.m_dmPlayerData.m_Money - eqpData.m_Price;
-		// 	if (player.m_dmPlayerData.m_Money < 0)
-		// 	{
-		// 		player.m_dmPlayerData.m_Money = 0;
-		// 	}
-		// }
-
-		// dont add duplicate equip to player data
 		if (!player.m_dmPlayerData.ContainsEquipment(player.m_dmConnectSyncCtx, eqpData.m_Id))
 		{
 			player.m_dmPlayerData.AddEquipment(eqpData.m_Id);
@@ -633,23 +485,7 @@ modded class MissionServer
 	// 				DM_PlayerCustomRespawnHandler(player, identity, false);
 	// 			}
 	// 		}
-	// void DM_PlayerFastRespawnHandler(PlayerBase deadBody, PlayerIdentity identity)
-	// {
-	// 	if (deadBody)
-	// 	{
-	// 		if (identity)
-	// 		{
-	// 			vector pos = CalculateSafePos_DM(DM_GetAreaPos(), Math.Clamp(m_DM_currentRadius - 20, 10, 10000));
-	// 			PlayerBase player = CreateCharacter(identity, pos, null, GetGame().CreateRandomPlayer());
-	// 			if (player)
-	// 			{
-	// 				DM_PlayerCustomRespawnHandler(player, identity, false);
-	// 			}
-	// 		}
 			
-	// 		GetGame().ObjectDelete(deadBody);
-	// 	}
-	// }
 	// 		GetGame().ObjectDelete(deadBody);
 	// 	}
 	// }
@@ -794,28 +630,7 @@ modded class MissionServer
 	// 		{
 	// 			continue;
 	// 		}
-	// vector CalculateSafePos_DM(vector center, float radius)
-	// {
-	// 	int retries = 0;
-	// 	vector contactPos = vector.Zero;
-	// 	vector contactDir = vector.Zero;
-	// 	int contactComp = 0;
-	// 	while (true)
-	// 	{
-	// 		float angle = 2.0 * Math.PI * Math.RandomFloat01();
-	// 		float dist = Math.Sqrt(Math.RandomFloat01()) * radius;
-	// 		float x = center[0] + dist * Math.Cos(angle);
-	//     	float z = center[2] + dist * Math.Sin(angle);
-	// 		float y = GetGame().SurfaceY(x, z);
-	// 		if (GetGame().SurfaceIsSea(x, z))
-	// 		{
-	// 			continue;
-	// 		}
 			
-	// 		if (GetGame().SurfaceIsPond(x, z))
-	// 		{
-	// 			continue;
-	// 		}
 	// 		if (GetGame().SurfaceIsPond(x, z))
 	// 		{
 	// 			continue;
@@ -823,13 +638,7 @@ modded class MissionServer
 			
 	// 		vector raycastFrom = Vector(x, y + 0.2, z);
 	// 		vector raycastTo = Vector(x, y + 100, z);
-	// 		vector raycastFrom = Vector(x, y + 0.2, z);
-	// 		vector raycastTo = Vector(x, y + 100, z);
 			
-	// 		if (DayZPhysics.RaycastRV(raycastFrom, raycastTo, contactPos, contactDir, contactComp))
-	// 		{
-	// 			continue;
-	// 		}
 	// 		if (DayZPhysics.RaycastRV(raycastFrom, raycastTo, contactPos, contactDir, contactComp))
 	// 		{
 	// 			continue;
@@ -844,23 +653,10 @@ modded class MissionServer
 	// 				continue;
 	// 			}
 	// 		}
-	// 		if (retries < 100)
-	// 		{
-	// 			vector checkPos = Vector(x, y + 1.5, z);
-	// 			if (CheckNearestPlayer(checkPos, 10, 50))
-	// 			{
-	// 				retries = retries + 1;
-	// 				continue;
-	// 			}
-	// 		}
 			
-	// 		return Vector(x, y, z);
-	// 	}
 	// 		return Vector(x, y, z);
 	// 	}
 		
-	// 	return vector.Zero;
-	// };
 	// 	return vector.Zero;
 	// };
 	
@@ -879,37 +675,12 @@ modded class MissionServer
 	// 		{
 	// 			continue;
 	// 		}
-	// bool CheckNearestPlayer(vector pos, float minDist, float maxDist)
-	// {
-	// 	vector contactPos = vector.Zero;
-	// 	vector contactDir = vector.Zero;
-	// 	int contactComp = 0;
-	// 	array<Man> playersList();
-	// 	GetGame().GetPlayers(playersList);	
-	// 	foreach (Man target: playersList)
-	// 	{
-	// 		vector targetPos = target.GetWorldPosition();
-	// 		float curDist = vector.Distance(pos, targetPos);
-	// 		if (curDist > maxDist)
-	// 		{
-	// 			continue;
-	// 		}
 			
 	// 		if (curDist < minDist)
 	// 		{
 	// 			return true;
 	// 		}
-	// 		if (curDist < minDist)
-	// 		{
-	// 			return true;
-	// 		}
 			
-	// 		targetPos[1] = targetPos[1] + 1.5;
-	// 		if (!DayZPhysics.RaycastRV(pos, targetPos, contactPos, contactDir, contactComp, NULL, NULL, target))
-	// 		{
-	// 			return true;
-	// 		}
-	// 	}
 	// 		targetPos[1] = targetPos[1] + 1.5;
 	// 		if (!DayZPhysics.RaycastRV(pos, targetPos, contactPos, contactDir, contactComp, NULL, NULL, target))
 	// 		{
@@ -917,8 +688,6 @@ modded class MissionServer
 	// 		}
 	// 	}
 		
-	// 	return false;
-	// };
 	// 	return false;
 	// };
 };
